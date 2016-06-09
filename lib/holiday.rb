@@ -87,8 +87,11 @@ def all_holidays_with_bbq(holiday_hash)
     #  if supply == "BBQ"
      # puts supply.to_s
 
-  array = holiday_hash[:summer].keys<<holiday_hash[:spring].keys
-  array.flatten
+   holiday_hash.map do |season, holidays|
+      holidays.map do |holiday, supplies|
+        holiday if supplies.include?("BBQ")
+      end
+   end.flatten.compact
 
 
 
